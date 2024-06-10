@@ -5,5 +5,6 @@ import { FirebaseAuthService } from './firebase-auth.service';
 @Module({
   controllers: [FirebaseAuthController],
   providers: [FirebaseAuthService],
+  exports: [FirebaseAuthService],
 })
 export class FirebaseAuthModule {}
