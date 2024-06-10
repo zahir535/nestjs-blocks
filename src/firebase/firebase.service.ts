@@ -42,7 +42,7 @@ export class FirebaseService implements OnModuleInit {
       appId: this.configService.get<string>('appId'),
       measurementId: this.configService.get<string>('measurementId'),
     });
-    this.auth = getAuth(this.app);
+    this.auth = getAuth(this.getAppInstance());
   }
 
   getAppInstance(): FirebaseApp {
