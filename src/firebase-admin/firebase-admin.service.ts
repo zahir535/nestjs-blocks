@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import * as firebaseAdmin from 'firebase-admin';
 
 export type User = any;
@@ -19,6 +19,8 @@ const firebaseParams = {
 
 @Injectable()
 export class FirebaseAdminService {
+  private readonly logger = new Logger(FirebaseAdminService.name);
+
   constructor() {
     firebaseAdmin.initializeApp({
       credential: firebaseAdmin.credential.cert({
@@ -36,8 +38,9 @@ export class FirebaseAdminService {
       .then((decodedIdToken) => {
         return decodedIdToken;
       })
-      .catch(() => {
-        // log error
+      .catch((error) => {
+        this.logger.error(error);
+
         throw new Error('Token verification failed');
       });
   }

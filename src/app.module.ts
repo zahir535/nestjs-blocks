@@ -7,6 +7,7 @@ import configuration from './config/configuration';
 import { FirebaseAuthModule } from './firebase-auth/firebase-auth.module';
 import { FirebaseUsersModule } from './firebase-users/firebase-users.module';
 import { FirebaseAdminModule } from './firebase-admin/firebase-admin.module';
+import { FirebaseModule } from './firebase/firebase.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { FirebaseAdminModule } from './firebase-admin/firebase-admin.module';
     FirebaseAuthModule,
     FirebaseUsersModule,
     FirebaseAdminModule,
+    FirebaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
