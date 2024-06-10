@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import configuration from './config/configuration';
+import { FirebaseAuthModule } from './firebase-auth/firebase-auth.module';
+import { FirebaseUsersModule } from './firebase-users/firebase-users.module';
+import { FirebaseAdminModule } from './firebase-admin/firebase-admin.module';
 
 @Module({
   imports: [
@@ -18,6 +21,9 @@ import configuration from './config/configuration';
         PORT: Joi.number().port().default(3000),
       }),
     }),
+    FirebaseAuthModule,
+    FirebaseUsersModule,
+    FirebaseAdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],
