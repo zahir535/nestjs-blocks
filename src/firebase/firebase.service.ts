@@ -14,7 +14,6 @@ export class FirebaseService implements OnModuleInit {
   private logger = new Logger(FirebaseService.name);
 
   private app: FirebaseApp;
-  private auth: Auth;
 
   constructor(
     private configService: ConfigService<{
@@ -34,28 +33,27 @@ export class FirebaseService implements OnModuleInit {
 
   private initializeFirebase() {
     this.app = initializeApp({
-      apiKey: this.configService.get<string>('apiKey'),
-      authDomain: this.configService.get<string>('authDomain'),
-      projectId: this.configService.get<string>('projectId'),
-      storageBucket: this.configService.get<string>('storageBucket'),
-      messagingSenderId: this.configService.get<string>('messagingSenderId'),
-      appId: this.configService.get<string>('appId'),
-      measurementId: this.configService.get<string>('measurementId'),
+      apiKey: 'AIzaSyDtghayQAbs6b7_f7nusrXFvjjy864o-O8',
+      authDomain: 'nestjs-blocks.firebaseapp.com',
+      projectId: 'nestjs-blocks',
+      storageBucket: 'nestjs-blocks.appspot.com',
+      messagingSenderId: '868520759199',
+      appId: '1:868520759199:web:7000113439d82ad2feb7aa',
+      measurementId: 'G-QG497V0XVN',
     });
-    this.auth = getAuth(this.getAppInstance());
   }
 
   getAppInstance(): FirebaseApp {
     return this.app;
   }
 
-  getAuthInstance(): Auth {
-    return this.auth;
+  getAuthInstance(app: FirebaseApp): Auth {
+    return getAuth(app);
   }
 
   async registerUser(email: string, password: string): Promise<UserCredential> {
     return createUserWithEmailAndPassword(
-      this.getAuthInstance(),
+      this.getAuthInstance(this.getAppInstance()),
       email,
       password,
     ).catch((error) => {
@@ -67,7 +65,7 @@ export class FirebaseService implements OnModuleInit {
 
   async loginUser(email: string, password: string): Promise<UserCredential> {
     return signInWithEmailAndPassword(
-      this.getAuthInstance(),
+      this.getAuthInstance(this.getAppInstance()),
       email,
       password,
     ).catch((error) => {
