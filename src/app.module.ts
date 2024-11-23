@@ -8,6 +8,7 @@ import { FirebaseAuthModule } from './firebase-auth/firebase-auth.module';
 import { FirebaseUsersModule } from './firebase-users/firebase-users.module';
 import { FirebaseAdminModule } from './firebase-admin/firebase-admin.module';
 import { FirebaseModule } from './firebase/firebase.module';
+import { FirebaseMessagingModule } from './firebase-messaging/firebase-messaging.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { FirebaseModule } from './firebase/firebase.module';
     FirebaseUsersModule,
     FirebaseAdminModule,
     FirebaseModule,
+    FirebaseMessagingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

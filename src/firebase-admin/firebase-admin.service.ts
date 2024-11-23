@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 // import * as firebaseAdmin from 'firebase-admin';
 import { app } from 'firebase-admin';
 import { FCMClient } from '../../firebase-admin.factory';
-import { FirebaseMessagingDto } from './dto/firebase-messaging.dto';
+import { FirebaseAdminDto } from './dto/firebase-admin.dto';
 import { TopicMessage } from 'firebase-admin/messaging';
 
 export type User = any;
@@ -59,7 +59,7 @@ export class FirebaseAdminService {
     @Inject('MESSAGING_CLIENT') private readonly fcmClient: FCMClient,
   ) {}
 
-  async notifyConsentTopics(payload: FirebaseMessagingDto) {
+  async notifyConsentTopics(payload: FirebaseAdminDto) {
     const message: TopicMessage = {
       notification: {
         title: payload.title,
